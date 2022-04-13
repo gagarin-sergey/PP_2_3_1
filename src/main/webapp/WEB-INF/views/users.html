@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Manager</title>
+</head>
+<body>
+<div align= "center">
+    <h2>User Manager</h2>
+    <h3><a href="/new">New user</a></h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="user : ${userList}">
+            <td th:utext="${user.getId()}">...</td>
+            <td th:utext="${user.getName()}">...</td>
+            <td th:utext="${user.getLastName()}">...</td>
+            <td th:utext="${user.getAge()}">...</td>
+            <td>
+                <a th:href="@{/{id}(id=${user.getId()})}">
+                <input type="submit" value="Update">
+                </a>
+                <br>
+                <br>
+                <form th:method="DELETE" th:action="@{/delete/{id}(id=${user.getId()})}" >
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
